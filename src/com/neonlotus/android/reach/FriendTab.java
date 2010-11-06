@@ -48,10 +48,16 @@ public class FriendTab extends Activity implements OnItemClickListener, OnItemLo
     	friendsListView.setAdapter(mAdapter);	
     }
 
-	public void onItemClick(AdapterView<?> arg0, View v, int pos, long id) {	
+	public void onItemClick(AdapterView<?> arg0, View v, int pos, long id) {
+		//switch tabs to main and pass in friendtag
+		
 	}
 
 	public boolean onItemLongClick(AdapterView<?> arg0, View v, int pos, long id) {
+		//remove friend
+		//add confirm dialog box to this
+		fc.removeByIndex(pos);
+		init();
 		return false;
 	}
 }

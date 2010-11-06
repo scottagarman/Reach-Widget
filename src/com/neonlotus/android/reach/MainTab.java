@@ -4,10 +4,6 @@ import java.net.URLEncoder;
 
 import org.json.JSONObject;
 
-import com.neonlotus.android.reach.controller.ImageFetcherController;
-import com.neonlotus.android.reach.controller.JsonParserController;
-import com.neonlotus.android.reach.model.Player;
-
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -16,11 +12,15 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.neonlotus.android.reach.controller.ImageFetcherController;
+import com.neonlotus.android.reach.controller.JsonParserController;
+import com.neonlotus.android.reach.model.Player;
 
 
 public class MainTab extends Activity implements OnClickListener {
@@ -29,7 +29,7 @@ public class MainTab extends Activity implements OnClickListener {
 	//Views
 	private TextView gamertag;
 	private ImageView avatar;
-	private Button searchButton;
+	private ImageButton searchButton;
 	private EditText searchBox;
 	
 	//Instance
@@ -45,7 +45,7 @@ public class MainTab extends Activity implements OnClickListener {
         //get views
         gamertag = (TextView) findViewById(R.id.gamertag);
         avatar = (ImageView) findViewById(R.id.avatar);
-        searchButton = (Button) findViewById(R.id.sendbutton);
+        searchButton = (ImageButton) findViewById(R.id.sendbutton);
         searchBox = (EditText) findViewById(R.id.gamertagsearch);
         
         //listeners
@@ -164,4 +164,11 @@ public class MainTab extends Activity implements OnClickListener {
 				
 		}
 	}
+	
+	//ImageView img = (ImageView) findViewById(R.id.myImageId);
+	//img.setOnClickListener(new OnClickListener() {
+	  //  public void onClick(View v) {
+	       // your code here
+	    //}
+	//});
 }

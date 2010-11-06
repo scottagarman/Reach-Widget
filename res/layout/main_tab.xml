@@ -3,7 +3,6 @@
 	android:layout_width="fill_parent" 
 	android:layout_height="fill_parent"
 	android:orientation="vertical">
-		
 	<!-- Search Box and Button -->
 	<LinearLayout
 		android:orientation="horizontal"
@@ -11,31 +10,25 @@
 		android:layout_width="fill_parent">
 		<EditText
 			android:id="@+id/gamertagsearch"
-			android:layout_height="wrap_content"
+			android:layout_height="fill_parent"
 			android:layout_width="wrap_content"
 			android:layout_weight="2"
-			android:hint="Enter Reach Gamertag" 
-			/>
-		<Button
-			android:id="@+id/sendbutton"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_weight="8" 
-			android:text="_?" 
-			/> <!--  replace with image of mag glass -->	
+			android:hint="Enter Reach Gamertag" />
+		<ImageButton android:id="@+id/sendbutton"
+			android:src="@drawable/mag_glass_icon"
+  			android:layout_width="wrap_content"
+  			android:layout_height="wrap_content"/>
 	</LinearLayout>
-
 	<!-- Gamer Tag -->
 	<TextView
 		android:id="@+id/gamertag"
 		android:layout_height="wrap_content"
 		android:layout_width="wrap_content"
-		android:textSize="45dip"
-		/>		
+		android:textSize="40dip" />		
 	<!-- Avatar -->
 	<ImageView
 		android:id="@+id/avatar"
+		android:layout_gravity="center"
 		android:layout_height="wrap_content"
-		android:layout_width="wrap_content" 
-		/>		
+		android:layout_width="wrap_content" />		
 </LinearLayout>

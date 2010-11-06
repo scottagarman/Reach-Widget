@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 import com.neonlotus.android.reach.controller.ImageFetcherController;
 import com.neonlotus.android.reach.controller.JsonParserController;
+import com.neonlotus.android.reach.model.Player;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -26,10 +27,14 @@ public class MainTab extends Activity implements OnClickListener {
 	private static final String DEBUG_TAG = "ReachWidget/ReachMain";
 	
 	//Views
-	TextView gamertag;
-	ImageView avatar;
-	Button searchButton;
-	EditText searchBox;
+	private TextView gamertag;
+	private ImageView avatar;
+	private Button searchButton;
+	private EditText searchBox;
+	
+	//Instance
+	Player mPlayer;
+	
 	
 	/** Called when the activity is first created. */
     @Override
@@ -110,8 +115,9 @@ public class MainTab extends Activity implements OnClickListener {
     
     private void updateUI(JSONObject stats){
     	try {
-    		Log.d(DEBUG_TAG, "stats = " + stats.getJSONObject("Player").optString("gamertag"));
-    		gamertag.setText(stats.getJSONObject("Player").optString("gamertag"));
+    		mPlayer = new Player(stats);
+    		Log.d(DEBUG_TAG, "gtag: " + mPlayer.name);
+    		gamertag.setText(mPlayer.name);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

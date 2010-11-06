@@ -156,6 +156,5 @@ public class MainTab extends Activity implements OnClickListener {
 				this.getStats(searchBox.getText().toString());
 				
 		}
-		
 	}
 }

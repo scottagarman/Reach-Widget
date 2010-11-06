@@ -25,9 +25,6 @@ import android.widget.Toast;
 public class MainTab extends Activity implements OnClickListener {
 	private static final String DEBUG_TAG = "ReachWidget/ReachMain";
 	
-	//change gamer tag here!
-	private static final String GAMER_TAG = "fr0z3nph03n1x";
-	
 	//Views
 	TextView gamertag;
 	ImageView avatar;
@@ -51,30 +48,31 @@ public class MainTab extends Activity implements OnClickListener {
     }
      
     private void getStats(final String gTag){
-        final JsonParserController jpc = new JsonParserController();
+    	Toast.makeText(this, "Loading Gamertag", Toast.LENGTH_SHORT).show();
+    	final JsonParserController jpc = new JsonParserController();
 		Thread t = new Thread(){
         	public void run(){
-					try {
-						Log.d(DEBUG_TAG, "Trying to get stats...");
-						Message msg = Message.obtain(); 
-				        final JSONObject stats = jpc.parse("http://www.bungie.net/api/reach/reachapijson.svc/player/details/nostats/DANs$7-WyOGpTthopASqbsJE96sMV0mKCGv6$FDm$7k=/" 
-				        		+ URLEncoder.encode(gTag.trim(),"utf-8"));
-				        if(stats != null){
-							msg.what = REACHCONFIG.Messages.DOWNLOAD_COMPLETE;
-							msg.obj = stats;
-							mHandler.sendMessage(msg);	
-				        }else{
-							msg.what = REACHCONFIG.Messages.DOWNLOAD_FAILED;
-							msg.obj = null;
-							mHandler.sendMessage(msg);					        	
-				        }
-					}catch(Exception e){
-						e.printStackTrace();
-						Message msg = Message.obtain(); 
+				try {
+					Log.d(DEBUG_TAG, "Trying to get stats...");
+					Message msg = Message.obtain(); 
+			        final JSONObject stats = jpc.parse("http://www.bungie.net/api/reach/reachapijson.svc/player/details/nostats/DANs$7-WyOGpTthopASqbsJE96sMV0mKCGv6$FDm$7k=/" 
+			        		+ URLEncoder.encode(gTag.trim(),"utf-8"));
+			        if(stats != null){
+						msg.what = REACHCONFIG.Messages.DOWNLOAD_COMPLETE;
+						msg.obj = stats;
+						mHandler.sendMessage(msg);	
+			        }else{
 						msg.what = REACHCONFIG.Messages.DOWNLOAD_FAILED;
 						msg.obj = null;
-						mHandler.sendMessage(msg);
-					}
+						mHandler.sendMessage(msg);					        	
+			        }
+				}catch(Exception e){
+					e.printStackTrace();
+					Message msg = Message.obtain(); 
+					msg.what = REACHCONFIG.Messages.DOWNLOAD_FAILED;
+					msg.obj = null;
+					mHandler.sendMessage(msg);
+				}
         	}        
         };
         t.start();
@@ -85,26 +83,26 @@ public class MainTab extends Activity implements OnClickListener {
         final ImageFetcherController ifc = new ImageFetcherController();
     	Thread t2 = new Thread(){
         	public void run(){
-					try {
-						Log.d(DEBUG_TAG, "Trying to get Image...");
-						Message msg = Message.obtain(); 
-				        final Bitmap bm = ifc.getImageFromUrl("http://www.bungie.net/" + jObject.getString("PlayerModelUrl"));
-				        if(bm != null){
-							msg.what = REACHCONFIG.Messages.IMAGE_COMPLETE;
-							msg.obj = bm;
-							mHandler.sendMessage(msg);	
-				        }else{
-							msg.what = REACHCONFIG.Messages.IMAGE_FAILED;
-							msg.obj = null;
-							mHandler.sendMessage(msg);					        	
-				        }
-					}catch(Exception e){
-						e.printStackTrace();
-						Message msg = Message.obtain(); 
+				try {
+					Log.d(DEBUG_TAG, "Trying to get Image...");
+					Message msg = Message.obtain(); 
+			        final Bitmap bm = ifc.getImageFromUrl("http://www.bungie.net/" + jObject.getString("PlayerModelUrl"));
+			        if(bm != null){
+						msg.what = REACHCONFIG.Messages.IMAGE_COMPLETE;
+						msg.obj = bm;
+						mHandler.sendMessage(msg);	
+			        }else{
 						msg.what = REACHCONFIG.Messages.IMAGE_FAILED;
 						msg.obj = null;
-						mHandler.sendMessage(msg);
-					}
+						mHandler.sendMessage(msg);					        	
+			        }
+				}catch(Exception e){
+					e.printStackTrace();
+					Message msg = Message.obtain(); 
+					msg.what = REACHCONFIG.Messages.IMAGE_FAILED;
+					msg.obj = null;
+					mHandler.sendMessage(msg);
+				}
         	}        
         };
         t2.start();      	

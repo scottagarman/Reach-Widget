@@ -12,10 +12,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".ChallengeTab"></activity>
+        <activity android:name=".FriendTab"></activity>
+        <activity android:name=".SettingsTab"></activity>
+        <activity android:name=".MainTab"></activity>
 
     </application>
-    
-    <!-- Permissions -->
-	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
 
 </manifest> 

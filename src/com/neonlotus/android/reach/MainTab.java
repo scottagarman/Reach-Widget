@@ -4,12 +4,12 @@ import android.app.Activity;
 import android.os.Bundle;
 
 
-public class ChallengeTab extends Activity {
+public class MainTab extends Activity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.challenge_tab);
+        setContentView(R.layout.main_tab);
         
     }
 }

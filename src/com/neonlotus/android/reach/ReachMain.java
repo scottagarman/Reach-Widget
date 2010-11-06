@@ -29,25 +29,29 @@ public class ReachMain extends TabActivity {
         TabHost.TabSpec spec; // reusable tabspec for each tab
         Intent intent; // reusable intent for each tab
         
-        //Create an Intent to launch an activity for th etab (to be reused)
-        intent = new Intent().setClass(this, ChallengeTab.class);
         
+        //Create an Intent to launch an activity for the tab (to be reused)
+        intent = new Intent().setClass(this, MainTab.class);
         //Initialize a TabSpec for each tab and add it to the TabHost
         spec = tabHost.newTabSpec("main").setIndicator("Main", res.getDrawable(R.drawable.ic_tab_main)).setContent(intent);
         tabHost.addTab(spec);
         
+        
         //Other tabs
         intent = new Intent().setClass(this, ChallengeTab.class);
-        spec = tabHost.newTabSpec("fav").setIndicator("Challenges", res.getDrawable(R.drawable.ic_tab_fav)).setContent(intent);
+        spec = tabHost.newTabSpec("fav").setIndicator("Challenges", res.getDrawable(R.drawable.ic_tab_challenges)).setContent(intent);
         tabHost.addTab(spec);
         
-        intent = new Intent().setClass(this, ChallengeTab.class);
-        spec = tabHost.newTabSpec("about").setIndicator("Friends", res.getDrawable(R.drawable.ic_tab_about)).setContent(intent);
+        
+        intent = new Intent().setClass(this, FriendTab.class);
+        spec = tabHost.newTabSpec("about").setIndicator("Friends", res.getDrawable(R.drawable.ic_tab_friends)).setContent(intent);
         tabHost.addTab(spec);
         
-        intent = new Intent().setClass(this, ChallengeTab.class);
-        spec = tabHost.newTabSpec("settings").setIndicator("Settings", res.getDrawable(R.drawable.ic_tab_about)).setContent(intent);
+        
+        intent = new Intent().setClass(this, SettingsTab.class);
+        spec = tabHost.newTabSpec("settings").setIndicator("Settings", res.getDrawable(R.drawable.ic_tab_settings)).setContent(intent);
         tabHost.addTab(spec);
+        
         
         tabHost.setCurrentTab(0);
         

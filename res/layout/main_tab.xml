@@ -1,0 +1,15 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+	android:id="@+id/maintab" 
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+	android:orientation="horizontal">
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+	<TextView
+		android:text="Like a boss"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content" />
+</LinearLayout>
+</LinearLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" 
+	android:orientation="vertical" 
+	android:background="@drawable/playermodel" 
+	android:layout_gravity="center" 
+	android:layout_height="wrap_content">
+</LinearLayout>
+
+<!-- Simply putting the avatar as the background of a widget, playermodel.png -->

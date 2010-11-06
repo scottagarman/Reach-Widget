@@ -14,44 +14,32 @@
 			android:layout_height="fill_parent"
 			android:layout_width="fill_parent"
 			android:layout_weight="5"> <!-- Left half of screen, edit text etc. -->
-		
-		
-		<EditText
-			android:id="@+id/gamertagsearch"
-			android:layout_height="wrap_content"
-			android:layout_width="fill_parent" />
-		
-		<Button
-			android:id="@+id/sendbutton"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:text="this is under the box" />	
+			<EditText
+				android:id="@+id/gamertagsearch"
+				android:layout_height="wrap_content"
+				android:layout_width="fill_parent" />
+			<Button
+				android:id="@+id/sendbutton"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:text="this is under the box" />	
+			<TextView
+				android:id="@+id/gamertag"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:text="Loading..." />		
+		</LinearLayout>
 	
-	<TextView
-		android:id="@+id/gamertag"
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		android:text="Loading..." />		
-			
-	</LinearLayout>
-	
-	<LinearLayout
+		<LinearLayout
 			android:orientation="vertical"
 			android:layout_height="fill_parent"
 			android:layout_width="fill_parent"
 			android:layout_weight="5"> <!-- Right half, avatar basically -->
 	
-	<ImageView
-		android:id="@+id/avatar"
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content" />	
-	
-	</LinearLayout>	
-		
-	
-		
-	
-
-</LinearLayout>
-
+			<ImageView
+				android:id="@+id/avatar"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content" />	
+		</LinearLayout>	
+	</LinearLayout>
 </LinearLayout>

@@ -8,8 +8,15 @@
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent">
 	<TextView
-		android:text="Like a boss"
+		android:id="@+id/gamertag"
 		android:layout_height="wrap_content"
-		android:layout_width="wrap_content" />
+		android:layout_width="wrap_content"
+		android:text="Loading..." />
+		
+	<ImageView
+		android:id="@+id/avatar"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+	/>
 </LinearLayout>
 </LinearLayout>

@@ -128,7 +128,8 @@ public class MainTab extends Activity implements OnClickListener {
     }
     
     private void updateAvatar(Bitmap bm){
-    	 avatar.setImageBitmap(bm);
+    	mPlayer.avatar = bm; 
+    	avatar.setImageBitmap(mPlayer.avatar);
     }
     
 	/**

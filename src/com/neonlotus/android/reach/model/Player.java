@@ -2,6 +2,8 @@ package com.neonlotus.android.reach.model;
 
 import org.json.JSONObject;
 
+import android.graphics.Bitmap;
+
 public class Player {
 	
 	//Player
@@ -13,6 +15,7 @@ public class Player {
 	
 	//General
 	public String playerModelUrl = "";
+	public Bitmap avatar;
 	
 	public Player(JSONObject jObject){
 		

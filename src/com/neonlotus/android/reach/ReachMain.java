@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.TabHost;
+import android.widget.TextView;
+
 import org.json.JSONObject;
 
 import com.neonlotus.android.reach.controller.JsonParserController;
@@ -48,7 +50,7 @@ public class ReachMain extends TabActivity {
         tabHost.addTab(spec);
         
         tabHost.setCurrentTab(0);
-
+        
         //Banging comments
         getStats();
     }
@@ -83,6 +85,17 @@ public class ReachMain extends TabActivity {
         t.start();	        
     }
     
+    private void updateUI(JSONObject stats){
+    	try {
+    		Log.d(DEBUG_TAG, "stats = " + stats.getJSONObject("Player").optString("gamertag"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			Log.d(DEBUG_TAG, "Error getting Player:gamertag");
+		}
+    }
+    
+    
 	/**
 	 * Thread handler
 	 */
@@ -92,6 +105,7 @@ public class ReachMain extends TabActivity {
 				case REACHCONFIG.Messages.DOWNLOAD_COMPLETE:
 		        	JSONObject stats = (JSONObject) msg.obj;
 					Log.d(DEBUG_TAG, "Results: " + stats.toString());
+					updateUI(stats);
 					break;
 				case REACHCONFIG.Messages.DOWNLOAD_FAILED:
 		        	Log.d(DEBUG_TAG, "Failed!" );

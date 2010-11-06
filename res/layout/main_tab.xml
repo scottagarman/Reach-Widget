@@ -2,14 +2,42 @@
 	android:id="@+id/maintab" 
 	android:layout_width="fill_parent" 
 	android:layout_height="fill_parent"
-	android:orientation="horizontal">
+	android:orientation="vertical"> <!-- Entire Page -->
 	<LinearLayout
 		android:orientation="horizontal"
 		android:layout_width="fill_parent"
-		android:layout_height="fill_parent">
-	<TextView
-		android:text="Like a boss"
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content" />
+		android:layout_height="fill_parent"> <!-- Setting up the two columns -->
+		<LinearLayout
+			android:orientation="vertical"
+			android:layout_height="fill_parent"
+			android:layout_width="fill_parent"
+			android:layout_weight="5"> <!-- Left half of screen, edit text etc. -->
+		
+		
+		<EditText
+			android:id="@+id/gamertagsearch"
+			android:layout_height="wrap_content"
+			android:layout_width="fill_parent" />
+		
+		<Button
+			android:id="@+id/sendbutton"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="this is under the box" />	
+			
+			
+	</LinearLayout>
+	
+	<LinearLayout
+			android:orientation="vertical"
+			android:layout_height="fill_parent"
+			android:layout_width="fill_parent"
+			android:layout_weight="5"> <!-- Right half, avatar basically -->
+	
+		
+	
+	</LinearLayout>	
+		
 </LinearLayout>
+
 </LinearLayout>

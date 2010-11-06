@@ -27,7 +27,8 @@
 				android:id="@+id/gamertag"
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
-				android:text="Loading..." />		
+				android:textSize="25dip"
+				 />		
 		</LinearLayout>
 	
 		<LinearLayout

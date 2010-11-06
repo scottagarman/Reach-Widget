@@ -1,4 +1,4 @@
-package com.neonlotus.android.reach;
+package com.neonlotus.android.reach.widget;
 
 import android.appwidget.AppWidgetProvider;
 

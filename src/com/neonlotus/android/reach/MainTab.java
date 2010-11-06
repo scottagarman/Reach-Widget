@@ -1,5 +1,7 @@
 package com.neonlotus.android.reach;
 
+import java.net.URLEncoder;
+
 import org.json.JSONObject;
 
 import com.neonlotus.android.reach.controller.ImageFetcherController;
@@ -11,12 +13,16 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class MainTab extends Activity {
+public class MainTab extends Activity implements OnClickListener {
 	private static final String DEBUG_TAG = "ReachWidget/ReachMain";
 	
 	//change gamer tag here!
@@ -25,6 +31,8 @@ public class MainTab extends Activity {
 	//Views
 	TextView gamertag;
 	ImageView avatar;
+	Button searchButton;
+	EditText searchBox;
 	
 	/** Called when the activity is first created. */
     @Override
@@ -35,19 +43,22 @@ public class MainTab extends Activity {
         //get views
         gamertag = (TextView) findViewById(R.id.gamertag);
         avatar = (ImageView) findViewById(R.id.avatar);
+        searchButton = (Button) findViewById(R.id.sendbutton);
+        searchBox = (EditText) findViewById(R.id.gamertagsearch);
         
-        getStats();
+        //listeners
+        searchButton.setOnClickListener(this);
     }
      
-    private void getStats(){
+    private void getStats(final String gTag){
         final JsonParserController jpc = new JsonParserController();
-        //do this in new thread duh
 		Thread t = new Thread(){
         	public void run(){
 					try {
 						Log.d(DEBUG_TAG, "Trying to get stats...");
 						Message msg = Message.obtain(); 
-				        final JSONObject stats = jpc.parse("http://www.bungie.net/api/reach/reachapijson.svc/player/details/nostats/DANs$7-WyOGpTthopASqbsJE96sMV0mKCGv6$FDm$7k=/" + GAMER_TAG);
+				        final JSONObject stats = jpc.parse("http://www.bungie.net/api/reach/reachapijson.svc/player/details/nostats/DANs$7-WyOGpTthopASqbsJE96sMV0mKCGv6$FDm$7k=/" 
+				        		+ URLEncoder.encode(gTag.trim(),"utf-8"));
 				        if(stats != null){
 							msg.what = REACHCONFIG.Messages.DOWNLOAD_COMPLETE;
 							msg.obj = stats;
@@ -139,4 +150,14 @@ public class MainTab extends Activity {
 			}
 		}
 	};
+
+	public void onClick(View v) {
+		switch(v.getId()){
+			case R.id.sendbutton:
+				Log.d(DEBUG_TAG, "Searching for: " + searchBox.getText().toString());
+				this.getStats(searchBox.getText().toString());
+				
+		}
+		
+	}
 }

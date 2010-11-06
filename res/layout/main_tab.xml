@@ -6,7 +6,9 @@
 	<LinearLayout
 		android:orientation="horizontal"
 		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"> <!-- Setting up the two columns -->
+		android:layout_height="fill_parent"> 
+		
+		<!-- Setting up the two columns -->
 		<LinearLayout
 			android:orientation="vertical"
 			android:layout_height="fill_parent"
@@ -24,7 +26,12 @@
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:text="this is under the box" />	
-			
+	
+	<TextView
+		android:id="@+id/gamertag"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="Loading..." />		
 			
 	</LinearLayout>
 	
@@ -34,10 +41,17 @@
 			android:layout_width="fill_parent"
 			android:layout_weight="5"> <!-- Right half, avatar basically -->
 	
-		
+	<ImageView
+		android:id="@+id/avatar"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content" />	
 	
 	</LinearLayout>	
 		
+	
+		
+	
+
 </LinearLayout>
 
 </LinearLayout>

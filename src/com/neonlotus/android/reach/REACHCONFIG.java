@@ -10,4 +10,9 @@ public class REACHCONFIG {
 		public static final int IMAGE_FAILED		= 101;
 	}
 	
+	public static class Preferences{
+		public static final String ALL = "_ReachPreferences";
+		public static final String STORED_FRIENDS = "_Friends";
+	}
+	
 }

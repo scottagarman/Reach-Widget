@@ -2,45 +2,40 @@
 	android:id="@+id/maintab" 
 	android:layout_width="fill_parent" 
 	android:layout_height="fill_parent"
-	android:orientation="vertical"> <!-- Entire Page -->
+	android:orientation="vertical">
+		
+	<!-- Search Box and Button -->
 	<LinearLayout
 		android:orientation="horizontal"
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"> 
-		
-		<!-- Setting up the two columns -->
-		<LinearLayout
-			android:orientation="vertical"
-			android:layout_height="fill_parent"
-			android:layout_width="fill_parent"
-			android:layout_weight="5"> <!-- Left half of screen, edit text etc. -->
-			<EditText
-				android:id="@+id/gamertagsearch"
-				android:layout_height="wrap_content"
-				android:layout_width="fill_parent" />
-			<Button
-				android:id="@+id/sendbutton"
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
-				android:text="this is under the box" />	
-			<TextView
-				android:id="@+id/gamertag"
-				android:layout_height="wrap_content"
-				android:layout_width="wrap_content"
-				android:textSize="25dip"
-				 />		
-		</LinearLayout>
-	
-		<LinearLayout
-			android:orientation="vertical"
-			android:layout_height="fill_parent"
-			android:layout_width="fill_parent"
-			android:layout_weight="5"> <!-- Right half, avatar basically -->
-	
-			<ImageView
-				android:id="@+id/avatar"
-				android:layout_height="wrap_content"
-				android:layout_width="wrap_content" />	
-		</LinearLayout>	
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent">
+		<EditText
+			android:id="@+id/gamertagsearch"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:layout_weight="2"
+			android:hint="Enter Reach Gamertag" 
+			/>
+		<Button
+			android:id="@+id/sendbutton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="8" 
+			android:text="_?" 
+			/> <!--  replace with image of mag glass -->	
 	</LinearLayout>
+
+	<!-- Gamer Tag -->
+	<TextView
+		android:id="@+id/gamertag"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:textSize="45dip"
+		/>		
+	<!-- Avatar -->
+	<ImageView
+		android:id="@+id/avatar"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content" 
+		/>		
 </LinearLayout>

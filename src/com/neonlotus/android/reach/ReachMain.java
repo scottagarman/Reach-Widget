@@ -4,8 +4,11 @@ import android.app.TabActivity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.widget.TabHost;
 import org.json.JSONObject;
+
 import com.neonlotus.android.reach.controller.JsonParserController;
 import android.util.Log;
 
@@ -47,18 +50,53 @@ public class ReachMain extends TabActivity {
         tabHost.setCurrentTab(0);
 
         //Banging comments
-        
-        JSONObject stats;
-        
-        JsonParserController jpc = new JsonParserController();
-        //do this in new thread duh
-        stats = jpc.parse("http://www.bungie.net/api/reach/reachapijson.svc/player/details/nostats/DANs$7-WyOGpTthopASqbsJE96sMV0mKCGv6$FDm$7k=/fr0z3nph03n1x");
-        
-        if(stats != null){
-        	Log.d(DEBUG_TAG, "Results!: " + stats.toString());
-        }else{
-        	Log.d(DEBUG_TAG, "Failed!" );
-        }
-
+        getStats();
     }
+    
+    private void getStats(){
+        final JsonParserController jpc = new JsonParserController();
+        //do this in new thread duh
+		Thread t = new Thread(){
+        	public void run(){
+					try {
+						Log.d(DEBUG_TAG, "Trying to get stats...");
+						Message msg = Message.obtain(); 
+				        final JSONObject stats = jpc.parse("http://www.bungie.net/api/reach/reachapijson.svc/player/details/nostats/DANs$7-WyOGpTthopASqbsJE96sMV0mKCGv6$FDm$7k=/fr0z3nph03n1x");
+				        if(stats != null){
+							msg.what = REACHCONFIG.Messages.DOWNLOAD_COMPLETE;
+							msg.obj = stats;
+							mHandler.sendMessage(msg);	
+				        }else{
+							msg.what = REACHCONFIG.Messages.DOWNLOAD_FAILED;
+							msg.obj = null;
+							mHandler.sendMessage(msg);					        	
+				        }
+					}catch(Exception e){
+						e.printStackTrace();
+						Message msg = Message.obtain(); 
+						msg.what = REACHCONFIG.Messages.DOWNLOAD_FAILED;
+						msg.obj = null;
+						mHandler.sendMessage(msg);
+					}
+        	}        
+        };
+        t.start();	        
+    }
+    
+	/**
+	 * Thread handler
+	 */
+	private Handler mHandler = new Handler(){
+		public void handleMessage(Message msg) {
+			switch(msg.what){
+				case REACHCONFIG.Messages.DOWNLOAD_COMPLETE:
+		        	JSONObject stats = (JSONObject) msg.obj;
+					Log.d(DEBUG_TAG, "Results: " + stats.toString());
+					break;
+				case REACHCONFIG.Messages.DOWNLOAD_FAILED:
+		        	Log.d(DEBUG_TAG, "Failed!" );
+					break;
+			}
+		}
+	};
 }

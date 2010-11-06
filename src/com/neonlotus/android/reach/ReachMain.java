@@ -5,8 +5,13 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.widget.TabHost;
+import org.json.JSONObject;
+import com.neonlotus.android.reach.controller.JsonParserController;
+import android.util.Log;
 
 public class ReachMain extends TabActivity {
+	private static final String DEBUG_TAG = "ReachWidget/ReachMain";
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,5 +45,20 @@ public class ReachMain extends TabActivity {
         tabHost.addTab(spec);
         
         tabHost.setCurrentTab(0);
+
+        //Banging comments
+        
+        JSONObject stats;
+        
+        JsonParserController jpc = new JsonParserController();
+        //do this in new thread duh
+        stats = jpc.parse("http://www.bungie.net/api/reach/reachapijson.svc/player/details/nostats/DANs$7-WyOGpTthopASqbsJE96sMV0mKCGv6$FDm$7k=/fr0z3nph03n1x");
+        
+        if(stats != null){
+        	Log.d(DEBUG_TAG, "Results!: " + stats.toString());
+        }else{
+        	Log.d(DEBUG_TAG, "Failed!" );
+        }
+
     }
 }

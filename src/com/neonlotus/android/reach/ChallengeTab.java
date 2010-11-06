@@ -1,7 +1,10 @@
 package com.neonlotus.android.reach;
 
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.neonlotus.android.reach.controller.JsonParserController;
@@ -12,6 +15,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -23,17 +27,45 @@ public class ChallengeTab extends Activity {
 	//Views
 	private ListView challengeList;
 	
+	//List Adapter
+	ArrayAdapter<String> mAdapter;
+	
+	
 	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.challenge_tab);
         
+        challengeList = (ListView) findViewById(R.id.challengesList);
+        
+        //getchallenges!
+        getChallenges();
+        
     }
     
     
     public void populateChallenges(JSONObject challenges){
-    	
+		JSONArray daily;
+		ArrayList<String> list = null;
+		try {
+			daily = challenges.getJSONArray("Daily");
+			JSONArray weekly = challenges.getJSONArray("Weekly");
+			list = new ArrayList<String>();
+			for (int i=0; i < daily.length(); i++) {
+			    list.add(daily.getJSONObject(i).getString("Name"));
+			}
+			for (int i=0; i < weekly.length(); i++) {
+			    list.add(weekly.getJSONObject(i).getString("Name"));
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	if(list != null){
+        	mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+    		challengeList.setAdapter(mAdapter);	
+    	}
     }
     
     public void getChallenges(){

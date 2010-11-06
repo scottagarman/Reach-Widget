@@ -2,15 +2,12 @@
 	android:id="@+id/challengetab" 
 	android:layout_width="fill_parent" 
 	android:layout_height="fill_parent"
-	android:orientation="horizontal">
-	<LinearLayout
-		android:orientation="horizontal"
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent">
-	<TextView
-		android:id="@+id/gTag"
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		android:text="Loading..." />
-</LinearLayout>
+	android:orientation="vertical">
+	
+	<ListView
+		android:id="@+id/challengesList"
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent"
+		/>
+
 </LinearLayout>

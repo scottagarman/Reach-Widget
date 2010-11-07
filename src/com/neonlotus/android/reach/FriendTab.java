@@ -38,11 +38,24 @@ public class FriendTab extends Activity implements OnItemClickListener, OnItemLo
         friendsListView.setOnItemClickListener(this);
         friendsListView.setOnItemLongClickListener(this);
         
+        //instance
+    	fc = new FriendsController(this);
+    	
+        //load list
         init();
     }
     
-    public void init(){
-    	fc = new FriendsController(this);
+    
+    
+    @Override
+	protected void onResume() {
+		super.onResume();
+		init();
+	}
+
+
+
+	public void init(){
     	friendsList = fc.loadAll(); 
     	if(friendsList != null){
         	mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, friendsList);

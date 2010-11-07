@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.neonlotus.android.reach.controller.FriendsController;
 import com.neonlotus.android.reach.controller.ImageFetcherController;
 import com.neonlotus.android.reach.controller.JsonParserController;
 import com.neonlotus.android.reach.model.Player;
@@ -36,6 +37,7 @@ public class MainTab extends Activity implements OnClickListener {
 	
 	//Instance
 	Player mPlayer;
+	FriendsController fc;
 	
 	
 	/** Called when the activity is first created. */
@@ -53,6 +55,10 @@ public class MainTab extends Activity implements OnClickListener {
         
         //listeners
         searchButton.setOnClickListener(this);
+        friendButton.setOnClickListener(this);
+        
+        //init
+        fc = new FriendsController(this);
     }
      
     private void getStats(final String gTag){
@@ -136,6 +142,13 @@ public class MainTab extends Activity implements OnClickListener {
     	avatar.setImageBitmap(mPlayer.avatar);
     }
     
+    private void saveFriend(String gTag){
+    	if(gTag != null && !gTag.equals("")){
+    		Toast.makeText(this, "Added Friend: " + gTag, Toast.LENGTH_LONG).show();
+    		fc.add(gTag);
+    	}
+    }
+    
 	/**
 	 * Thread handler
 	 */
@@ -165,6 +178,10 @@ public class MainTab extends Activity implements OnClickListener {
 			case R.id.sendbutton:
 				Log.d(DEBUG_TAG, "Searching for: " + searchBox.getText().toString());
 				this.getStats(searchBox.getText().toString());
+				break;
+			case R.id.friendbutton:
+				this.saveFriend(searchBox.getText().toString());
+				break;
 				
 		}
 	}

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 
@@ -43,9 +44,12 @@ public class FriendTab extends Activity implements OnItemClickListener, OnItemLo
     public void init(){
     	fc = new FriendsController(this);
     	friendsList = fc.loadAll(); 
-    	
-    	mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, friendsList);
-    	friendsListView.setAdapter(mAdapter);	
+    	if(friendsList != null){
+        	mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, friendsList);
+        	friendsListView.setAdapter(mAdapter);		
+    	}else{
+    		Toast.makeText(this, "No friends noob!", Toast.LENGTH_SHORT).show();
+    	}
     }
 
 	public void onItemClick(AdapterView<?> arg0, View v, int pos, long id) {

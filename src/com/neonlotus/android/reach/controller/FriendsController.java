@@ -57,9 +57,12 @@ public class FriendsController {
 	}
 	
 	public ArrayList<String> loadAll(){
-		ArrayList<String> friendsList;
+		ArrayList<String> friendsList = null;
 		SharedPreferences sp = this.ctx.getSharedPreferences(REACHCONFIG.Preferences.ALL, Context.MODE_PRIVATE);
-		friendsList = new ArrayList<String>(Arrays.asList(sp.getString(REACHCONFIG.Preferences.STORED_FRIENDS, null).split("_")));
+		String temp = sp.getString(REACHCONFIG.Preferences.STORED_FRIENDS, null);
+		if(temp != null){
+			friendsList = new ArrayList<String>(Arrays.asList(temp.split("_")));	
+		}
 		return friendsList;
 	}
 	

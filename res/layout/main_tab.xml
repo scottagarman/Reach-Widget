@@ -19,12 +19,26 @@
   			android:layout_width="wrap_content"
   			android:layout_height="wrap_content"/>
 	</LinearLayout>
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent">
 	<!-- Gamer Tag -->
 	<TextView
 		android:id="@+id/gamertag"
 		android:layout_height="wrap_content"
 		android:layout_width="wrap_content"
-		android:textSize="40dip" />		
+		android:layout_weight="8"
+		android:textSize="30dip" />
+		<Button
+			android:id="@+id/friendbutton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:visibility="invisible"
+			android:layout_weight="2"
+			android:text="Add Friend" />	
+	</LinearLayout>
+			
 	<!-- Avatar -->
 	<ImageView
 		android:id="@+id/avatar"

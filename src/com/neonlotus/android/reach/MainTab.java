@@ -12,6 +12,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -31,6 +32,7 @@ public class MainTab extends Activity implements OnClickListener {
 	private ImageView avatar;
 	private ImageButton searchButton;
 	private EditText searchBox;
+	private Button friendButton;
 	
 	//Instance
 	Player mPlayer;
@@ -47,6 +49,7 @@ public class MainTab extends Activity implements OnClickListener {
         avatar = (ImageView) findViewById(R.id.avatar);
         searchButton = (ImageButton) findViewById(R.id.sendbutton);
         searchBox = (EditText) findViewById(R.id.gamertagsearch);
+        friendButton = (Button) findViewById(R.id.friendbutton);
         
         //listeners
         searchButton.setOnClickListener(this);
@@ -118,6 +121,7 @@ public class MainTab extends Activity implements OnClickListener {
     		mPlayer = new Player(stats);
     		Log.d(DEBUG_TAG, "gtag: " + mPlayer.name);
     		gamertag.setText(mPlayer.name);
+    		friendButton.setVisibility(1);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

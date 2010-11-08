@@ -3,7 +3,12 @@
 	android:layout_width="fill_parent" 
 	android:layout_height="fill_parent"
 	android:orientation="vertical">
-	
+	<TextView
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:layout_gravity="center"
+		android:text="Long-press to delete"
+		android:textSize="15dip" />
 	<ListView
 		android:id="@+id/friendsList" 
 		android:layout_width="fill_parent" 

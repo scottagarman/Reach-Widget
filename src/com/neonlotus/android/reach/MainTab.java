@@ -185,11 +185,4 @@ public class MainTab extends Activity implements OnClickListener {
 				
 		}
 	}
-	
-	//ImageView img = (ImageView) findViewById(R.id.myImageId);
-	//img.setOnClickListener(new OnClickListener() {
-	  //  public void onClick(View v) {
-	       // your code here
-	    //}
-	//});
 }

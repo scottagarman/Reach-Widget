@@ -2,9 +2,9 @@ package com.neonlotus.android.reach;
 
 import java.util.ArrayList;
 
-import com.neonlotus.android.reach.controller.FriendsController;
-
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,6 +13,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
+
+import com.neonlotus.android.reach.controller.FriendsController;
 
 
 public class FriendTab extends Activity implements OnItemClickListener, OnItemLongClickListener {
@@ -70,11 +72,32 @@ public class FriendTab extends Activity implements OnItemClickListener, OnItemLo
 		
 	}
 
-	public boolean onItemLongClick(AdapterView<?> arg0, View v, int pos, long id) {
+	public boolean onItemLongClick(AdapterView<?> arg0, View v, final int pos, long id) {
 		//remove friend
 		//add confirm dialog box to this
-		fc.removeByIndex(pos);
-		init();
+		
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setCancelable(true);
+		builder.setTitle("Delete Friend?");
+		builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+			//@Override
+			public void onClick(DialogInterface dialog, int which) {
+				fc.removeByIndex(pos);
+				init();
+				
+				dialog.dismiss();
+			}
+		});
+		builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+			//@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+			}
+		});
+		
+		AlertDialog alert = builder.create();
+		alert.show();
+		
 		return false;
-	}
+	}	
 }

@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.neonlotus.android.reach.controller.ChallengeListAdapter;
 import com.neonlotus.android.reach.controller.JsonParserController;
 import com.neonlotus.android.reach.model.Challenge;
 
@@ -27,7 +28,7 @@ public class ChallengeTab extends Activity {
 	private ListView challengeList;
 	
 	//List Adapter
-	private ArrayAdapter<String> mAdapter;
+	private ChallengeListAdapter mAdapter;
 	
 	//member
 	private ArrayList<Challenge> mChallenges;
@@ -63,12 +64,8 @@ public class ChallengeTab extends Activity {
 			e.printStackTrace();
 		}
 		
-		ArrayList<String> list = new ArrayList<String>();
-		for(Challenge c : mChallenges){
-			list.add(c.name);
-		}
-    	if(list != null){
-    		mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+    	if(mChallenges != null){
+    		mAdapter = new ChallengeListAdapter(this, mChallenges);
     		challengeList.setAdapter(mAdapter);	
     	}
     }

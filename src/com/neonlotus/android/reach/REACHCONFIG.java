@@ -1,5 +1,9 @@
 package com.neonlotus.android.reach;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.widget.RemoteViews;
+
 public class REACHCONFIG {
 
 	public static class Messages{
@@ -18,5 +22,14 @@ public class REACHCONFIG {
 	
 	public static class Intents{
 		public static final String EXTRA_IDS = "_EXTRAIDSBRO";
+	}
+	
+	public static class Widget{
+		 public static RemoteViews buildRemoteView(Context context, int appWidgetId, Bitmap image){
+			 RemoteViews toRet = new RemoteViews(context.getPackageName(), R.layout.w_main);
+	         toRet.setImageViewBitmap(R.id.widgetavatar, image);
+	         
+	         return toRet;
+		 }
 	}
 }

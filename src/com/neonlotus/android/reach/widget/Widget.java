@@ -78,7 +78,7 @@ public class Widget	extends AppWidgetProvider {
 			
 			String tempTag;
 			for(int appWidgetId : appWidgetIds){
-				tempTag = sp.getString(TAG_KEY + appWidgetId, null);
+				tempTag = sp.getString(REACHCONFIG.Preferences.TAG_KEY + appWidgetId, null);
 				if(tempTag != null){
 					new UpdateThread(this, appWidgetId, tempTag).start();
 				}
@@ -110,8 +110,8 @@ public class Widget	extends AppWidgetProvider {
 	    		this.image = this.ifc.getImageFromUrl("http://www.bungie.net/" + tag);
 	    		if(this.image != null){
 	    			//build view
-	        		RemoteViews updateViews = REACHCONFIG.Widget.buildUpdate(this.ctx, this.appWidgetId, this.image);
-					AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mContext);
+	        		RemoteViews updateViews = REACHCONFIG.Widget.buildRemoteView(this.ctx, this.appWidgetId, this.image);
+					AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this.ctx);
 					appWidgetManager.updateAppWidget(appWidgetId, updateViews);
 	    		}else{
 	    			//no image show stock image

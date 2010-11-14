@@ -55,7 +55,7 @@ public class WidgetConfigure extends Activity implements OnClickListener{
 		if(stats != null){
 			Player p = new Player(stats);
 			ImageFetcherController ifc = new ImageFetcherController();
-			Bitmap image = ifc.getImageFromUrl("http://www.bungie.net/" + p.playerModelUrl);
+			Bitmap image = ifc.getImageFromUrl(p.playerModelUrl);
 			if(image != null){
 				updateWidget(this, p.playerModelUrl, image);
 			}

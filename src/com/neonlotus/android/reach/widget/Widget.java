@@ -94,7 +94,7 @@ public class Widget	extends AppWidgetProvider {
 	    		this.image = null;
 	    	}
 	    	public void run(){
-	    		this.image = this.ifc.getImageFromUrl("http://www.bungie.net/" + tag);
+	    		this.image = this.ifc.getImageFromUrl(tag);
 	    		if(this.image != null){
 	    			//build view
 	        		RemoteViews updateViews = REACHCONFIG.Widget.buildRemoteView(this.ctx, this.appWidgetId, this.image);

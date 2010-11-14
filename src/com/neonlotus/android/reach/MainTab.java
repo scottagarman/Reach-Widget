@@ -100,7 +100,7 @@ public class MainTab extends Activity implements OnClickListener {
 				try {
 					Log.d(DEBUG_TAG, "Trying to get Image...");
 					Message msg = Message.obtain(); 
-			        final Bitmap bm = ifc.getImageFromUrl("http://www.bungie.net/" + jObject.getString("PlayerModelUrl"));
+			        final Bitmap bm = ifc.getImageFromUrl(jObject.getString("PlayerModelUrl"));
 			        if(bm != null){
 						msg.what = REACHCONFIG.Messages.IMAGE_COMPLETE;
 						msg.obj = bm;

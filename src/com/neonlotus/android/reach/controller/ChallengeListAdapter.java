@@ -41,7 +41,7 @@ public class ChallengeListAdapter extends BaseAdapter {
 		
 		holder.name.setText(this.challengeList.get(position).name);
 		holder.description.setText(this.challengeList.get(position).description);
-		holder.credits.setText(this.challengeList.get(position).credits);
+		holder.credits.setText(this.challengeList.get(position).credits + "CR");
 		holder.typeImage.setImageBitmap(this.challengeList.get(position).isWeeklyChallenge ? null : null); //put image types here
 		
 		return convertView;

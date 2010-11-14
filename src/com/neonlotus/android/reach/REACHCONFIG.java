@@ -13,6 +13,10 @@ public class REACHCONFIG {
 	public static class Preferences{
 		public static final String ALL = "_ReachPreferences";
 		public static final String STORED_FRIENDS = "_Friends";
+		public static final String TAG_KEY = "_REACHTAG";
 	}
 	
+	public static class Intents{
+		public static final String EXTRA_IDS = "_EXTRAIDSBRO";
+	}
 }

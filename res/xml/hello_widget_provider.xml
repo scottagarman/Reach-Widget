@@ -3,5 +3,6 @@
 	android:minWidth="160px" 
 	android:minHeight="200px" 
 	android:updatePeriodMillis="86400000" 
-	android:initialLayout="@layout/w_main" />
+	android:initialLayout="@layout/w_main"
+	android:configure="com.neonlotus.android.reach.widget.WidgetConfigure" />
 	<!-- Right now it's 2x2 I think? -->

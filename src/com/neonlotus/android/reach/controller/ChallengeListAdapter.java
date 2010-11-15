@@ -1,9 +1,11 @@
 package com.neonlotus.android.reach.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.neonlotus.android.reach.R;
 import com.neonlotus.android.reach.model.Challenge;
+import com.neonlotus.android.reach.model.ChallengeModel;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,10 +18,10 @@ import android.widget.TextView;
 
 public class ChallengeListAdapter extends BaseAdapter {
 	private LayoutInflater inflator;
-	private ArrayList<Challenge> challengeList;
+	private ChallengeModel challengeList;
 	
-	public ChallengeListAdapter(Context context, ArrayList<Challenge> objects) {
-		this.challengeList = objects;
+	public ChallengeListAdapter(Context context, ChallengeModel challengeList) {
+		this.challengeList = challengeList;
 		
 		this.inflator = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
@@ -39,10 +41,10 @@ public class ChallengeListAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 		
-		holder.name.setText(this.challengeList.get(position).name);
-		holder.description.setText(this.challengeList.get(position).description);
-		holder.credits.setText(this.challengeList.get(position).credits + "CR");
-		holder.typeImage.setImageBitmap(this.challengeList.get(position).isWeeklyChallenge ? null : null); //put image types here
+		holder.name.setText( (CharSequence) this.challengeList.getChallengeAtIndex(position).get("name"));
+		holder.description.setText( (CharSequence) this.challengeList.getChallengeAtIndex(position).get("description"));
+		holder.credits.setText( (CharSequence) this.challengeList.getChallengeAtIndex(position).get("credits") + "CR");
+		holder.typeImage.setImageBitmap((Boolean) this.challengeList.getChallengeAtIndex(position).get("isWeeklyChallenge") ? null : null); //put image types here
 		
 		return convertView;
 	}
@@ -58,7 +60,7 @@ public class ChallengeListAdapter extends BaseAdapter {
 		return this.challengeList.size();
 	}
 	public Object getItem(int position) {
-		return this.challengeList.get(position);
+		return this.challengeList.getChallengeAtIndex(position);
 	}
 	public long getItemId(int position) {
 		return position;

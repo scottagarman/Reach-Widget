@@ -9,6 +9,8 @@ import org.json.JSONObject;
 import com.neonlotus.android.reach.controller.ChallengeListAdapter;
 import com.neonlotus.android.reach.controller.JsonParserController;
 import com.neonlotus.android.reach.model.Challenge;
+import com.neonlotus.android.reach.model.ChallengeDataListener;
+import com.neonlotus.android.reach.model.ChallengeModel;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -20,7 +22,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
-public class ChallengeTab extends Activity {
+public class ChallengeTab extends Activity implements ChallengeDataListener {
     
 	private static final String DEBUG_TAG = "ReachWidget";
 	
@@ -30,8 +32,8 @@ public class ChallengeTab extends Activity {
 	//List Adapter
 	private ChallengeListAdapter mAdapter;
 	
-	//member
-	private ArrayList<Challenge> mChallenges;
+	//Model
+	ChallengeModel challengeModel;
 	
 	/** Called when the activity is first created. */
     @Override
@@ -40,81 +42,22 @@ public class ChallengeTab extends Activity {
         setContentView(R.layout.challenge_tab);
         
         challengeList = (ListView) findViewById(R.id.challengesList);
+        challengeModel = new ChallengeModel(this);
         
-        //getchallenges!
-        getChallenges();
-        
+        init();
     }
     
-    
-    public void populateChallenges(JSONObject challenges){
-		JSONArray daily;
-		try {
-			daily = challenges.getJSONArray("Daily");
-			JSONArray weekly = challenges.getJSONArray("Weekly");
-			mChallenges = new ArrayList<Challenge>();
-			for (int i=0; i < daily.length(); i++) {
-				mChallenges.add(new Challenge(daily.getJSONObject(i)));
-			}
-			for (int i=0; i < weekly.length(); i++) {
-				mChallenges.add(new Challenge(weekly.getJSONObject(i)));
-			}
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    public void init(){
+    	mAdapter = new ChallengeListAdapter(this, challengeModel);
+    	challengeList.setAdapter(mAdapter);	
+    }
+
+	public void onDataError() {
+		// TODO Auto-generated method stub
 		
-    	if(mChallenges != null){
-    		mAdapter = new ChallengeListAdapter(this, mChallenges);
-    		challengeList.setAdapter(mAdapter);	
-    	}
-    }
-    
-    public void getChallenges(){
-    	Toast.makeText(this, "Loading Challenges...", Toast.LENGTH_SHORT).show();
-    	final JsonParserController jpc = new JsonParserController();
-		Thread t = new Thread(){
-        	public void run(){
-				try {
-					Log.d(DEBUG_TAG, "Trying to get challenges...");
-					Message msg = Message.obtain(); 
-			        final JSONObject stats = jpc.parse("http://www.bungie.net/api/reach/reachapijson.svc/game/challenges/DANs$7-WyOGpTthopASqbsJE96sMV0mKCGv6$FDm$7k=");
-			        if(stats != null){
-						msg.what = REACHCONFIG.Messages.DOWNLOAD_COMPLETE;
-						msg.obj = stats;
-						mHandler.sendMessage(msg);	
-			        }else{
-						msg.what = REACHCONFIG.Messages.DOWNLOAD_FAILED;
-						msg.obj = null;
-						mHandler.sendMessage(msg);					        	
-			        }
-				}catch(Exception e){
-					e.printStackTrace();
-					Message msg = Message.obtain(); 
-					msg.what = REACHCONFIG.Messages.DOWNLOAD_FAILED;
-					msg.obj = null;
-					mHandler.sendMessage(msg);
-				}
-        	}        
-        };
-        t.start();    	
-    }
-    
-	/**
-	 * Thread handler
-	 */
-	private Handler mHandler = new Handler(){
-		public void handleMessage(Message msg) {
-			switch(msg.what){
-				case REACHCONFIG.Messages.DOWNLOAD_COMPLETE:
-					populateChallenges( (JSONObject) msg.obj);
-					//updateUI( (JSONObject) msg.obj);
-					break;
-				case REACHCONFIG.Messages.DOWNLOAD_FAILED:
-		        	Log.d(DEBUG_TAG, "Failed!" );
-					break;
-			}
-		}
-	};
-    
+	}
+
+	public void onDataRecieved() {
+		mAdapter.notifyDataSetChanged();
+	}
 }

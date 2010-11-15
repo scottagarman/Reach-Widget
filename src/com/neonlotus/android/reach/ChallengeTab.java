@@ -32,10 +32,6 @@ public class ChallengeTab extends Activity implements ChallengeDataListener {
         challengeList = (ListView) findViewById(R.id.challengesList);
         challengeModel = new ChallengeModel(this);
         
-        init();
-    }
-    
-    public void init(){
     	mAdapter = new ChallengeListAdapter(this, challengeModel);
     	challengeList.setAdapter(mAdapter);	
     }

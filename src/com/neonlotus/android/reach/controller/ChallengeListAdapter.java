@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.neonlotus.android.reach.R;
-import com.neonlotus.android.reach.model.Challenge;
 import com.neonlotus.android.reach.model.ChallengeModel;
 
 import android.content.Context;

@@ -1,23 +1,11 @@
 package com.neonlotus.android.reach;
 
-import java.util.ArrayList;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.neonlotus.android.reach.controller.ChallengeListAdapter;
-import com.neonlotus.android.reach.controller.JsonParserController;
-import com.neonlotus.android.reach.model.Challenge;
 import com.neonlotus.android.reach.model.ChallengeDataListener;
 import com.neonlotus.android.reach.model.ChallengeModel;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 

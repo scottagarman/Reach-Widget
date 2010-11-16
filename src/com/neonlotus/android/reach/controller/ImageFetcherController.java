@@ -10,7 +10,7 @@ import android.graphics.BitmapFactory;
 import android.util.Log;
 
 public class ImageFetcherController {
-	private static final String URL_PREFIX = "http://www.bungie.net/";
+	private static final String URL_PREFIX = "http://www.bungie.net";
 	
 	public ImageFetcherController(){
 		
@@ -19,6 +19,7 @@ public class ImageFetcherController {
     	Bitmap bm = null;
 		try {
             /* Open a new URL and get the InputStream to load data from it. */ 
+			Log.d("ImageFetcher", "getting img: " + URL_PREFIX+url);
             URL aURL = new URL(URL_PREFIX + url);
             URLConnection conn = aURL.openConnection(); 
             conn.connect(); 

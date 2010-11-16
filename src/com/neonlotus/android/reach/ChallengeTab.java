@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class ChallengeTab extends Activity implements ChallengeDataListener {
     
-	private static final String DEBUG_TAG = "ReachWidget";
+	private static final String DEBUG = "ReachWidget";
 	
 	//Views
 	private ListView challengeList;
@@ -37,8 +37,6 @@ public class ChallengeTab extends Activity implements ChallengeDataListener {
     }
 
 	public void onDataError() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public void onDataRecieved() {

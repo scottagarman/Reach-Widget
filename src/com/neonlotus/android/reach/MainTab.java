@@ -1,14 +1,7 @@
 package com.neonlotus.android.reach;
 
-import java.net.URLEncoder;
-
-import org.json.JSONObject;
-
 import android.app.Activity;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,10 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.neonlotus.android.reach.controller.FriendsController;
-import com.neonlotus.android.reach.controller.ImageFetcherController;
-import com.neonlotus.android.reach.controller.JsonParserController;
 import com.neonlotus.android.reach.model.ChallengeDataListener;
-import com.neonlotus.android.reach.model.Player;
 import com.neonlotus.android.reach.model.PlayerModel;
 
 
@@ -78,6 +68,7 @@ public class MainTab extends Activity implements OnClickListener, ChallengeDataL
 			case R.id.sendbutton:
 				Log.d(DEBUG_TAG, "Searching for: " + searchBox.getText().toString());
 				this.mPlayer.searchPlayer(searchBox.getText().toString());
+				Toast.makeText(this, "Searching...", Toast.LENGTH_SHORT).show();
 				break;
 			case R.id.friendbutton:
 				this.saveFriend(this.mPlayer.player.name);
@@ -87,6 +78,7 @@ public class MainTab extends Activity implements OnClickListener, ChallengeDataL
 	}
 	public void onDataError() {
 		Log.d(DEBUG_TAG, "onDataError : (");
+		Toast.makeText(this, "Sorry no luck, try again!", Toast.LENGTH_SHORT).show();
 	}
 	public void onDataRecieved() { 
 		Log.d(DEBUG_TAG, "onDataSuccess!!");

@@ -9,7 +9,6 @@ import com.neonlotus.android.reach.R;
 import com.neonlotus.android.reach.REACHCONFIG;
 import com.neonlotus.android.reach.controller.ImageFetcherController;
 import com.neonlotus.android.reach.controller.JsonParserController;
-import com.neonlotus.android.reach.model.Player;
 
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;

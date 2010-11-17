@@ -1,12 +1,9 @@
 package com.neonlotus.android.reach.widget;
 
-import java.util.Timer;
 
 import com.neonlotus.android.reach.REACHCONFIG;
 import com.neonlotus.android.reach.controller.ImageFetcherController;
 
-
-import android.app.PendingIntent;
 import android.app.Service;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;

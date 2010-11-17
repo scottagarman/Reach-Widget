@@ -1,14 +1,9 @@
 package com.neonlotus.android.reach.widget;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
-import org.json.JSONObject;
-
 import com.neonlotus.android.reach.R;
 import com.neonlotus.android.reach.REACHCONFIG;
-import com.neonlotus.android.reach.controller.ImageFetcherController;
-import com.neonlotus.android.reach.controller.JsonParserController;
+import com.neonlotus.android.reach.model.ChallengeDataListener;
+import com.neonlotus.android.reach.model.PlayerModel;
 
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
@@ -23,10 +18,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
-public class WidgetConfigure extends Activity implements OnClickListener{
+public class WidgetConfigure extends Activity implements OnClickListener, ChallengeDataListener{
 	private EditText editText;
 	private Button button;
+	private PlayerModel player;
 	
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,31 +33,14 @@ public class WidgetConfigure extends Activity implements OnClickListener{
         button = (Button) findViewById(R.id.configureButton);
         
         button.setOnClickListener(this);
+        
+    	this.player = new PlayerModel(this);
     }
 
     public void setWidget(){
-    	String value;
-    	JSONObject stats = null;
-    	value = editText.getText().toString();
-    	
-    	JsonParserController jpc = new JsonParserController();
-    	try {
-    		stats = jpc.parse("http://www.bungie.net/api/reach/reachapijson.svc/player/details/nostats/DANs$7-WyOGpTthopASqbsJE96sMV0mKCGv6$FDm$7k=/" 
-					+ URLEncoder.encode(value.trim(),"utf-8"));
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		
-		if(stats != null){
-			Player p = new Player(stats);
-			ImageFetcherController ifc = new ImageFetcherController();
-			Bitmap image = ifc.getImageFromUrl(p.playerModelUrl);
-			if(image != null){
-				updateWidget(this, p.playerModelUrl, image);
-			}
-		}
-		
-    	
+    	Toast.makeText(this, "Loading...", Toast.LENGTH_SHORT).show();
+    	String value = editText.getText().toString();
+    	this.player.searchPlayer(value);
     }
     
 	public void updateWidget(Context context, String url, Bitmap image){
@@ -98,5 +78,13 @@ public class WidgetConfigure extends Activity implements OnClickListener{
 				break;
 		}
 		
+	}
+
+	public void onDataError() {
+		Toast.makeText(this, "Sorry no luck, try again!", Toast.LENGTH_SHORT).show();
+	}
+
+	public void onDataRecieved() {
+		this.updateWidget(this, this.player.player.name, this.player.image);
 	}
 }

@@ -62,6 +62,8 @@ public class MainTab extends Activity implements OnClickListener, ChallengeDataL
         
         //init
         fc = new FriendsController(this);
+        
+        this.mPlayer = new PlayerModel(this);
     }
     
     private void saveFriend(String gTag){
@@ -75,7 +77,7 @@ public class MainTab extends Activity implements OnClickListener, ChallengeDataL
 		switch(v.getId()){
 			case R.id.sendbutton:
 				Log.d(DEBUG_TAG, "Searching for: " + searchBox.getText().toString());
-				this.mPlayer = new PlayerModel(searchBox.getText().toString(), this);
+				this.mPlayer.searchPlayer(searchBox.getText().toString());
 				break;
 			case R.id.friendbutton:
 				this.saveFriend(this.mPlayer.player.name);

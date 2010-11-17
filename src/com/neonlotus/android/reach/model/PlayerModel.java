@@ -18,19 +18,22 @@ public class PlayerModel {
 	private final static String API_KEY = "DANs$7-WyOGpTthopASqbsJE96sMV0mKCGv6$FDm$7k=/";
 	private final static String URL = "http://www.bungie.net/api/reach/reachapijson.svc/player/details/nostats/";
 	
+	private Thread t; //Stats Thread
+	private Thread t2; //Image Thread
 	private ChallengeDataListener cdl;
 	
 	public Player player;
 	public String playerTag;
 	public Bitmap image;
 	
-	public PlayerModel(String playerTag, ChallengeDataListener cdl){
-		this.playerTag = playerTag;
+	public PlayerModel(ChallengeDataListener cdl){
 		this.cdl = cdl;
-		
-		this.getPlayerFromNetwork();
 	}
 	
+	public void searchPlayer(String playerTag){
+		this.playerTag = playerTag;
+		this.getPlayerFromNetwork();
+	}
 	public Player getCurrentPlayer(){
 		return this.player;
 	}
@@ -38,7 +41,10 @@ public class PlayerModel {
 	
 	private void getPlayerFromNetwork(){
     	final JsonParserController jpc = new JsonParserController();
-		Thread t = new Thread(){
+    	if(this.t != null){
+    		this.t.interrupt();
+    	}
+    	this.t = new Thread(){
         	public void run(){
 				try {
 					Log.d(DEBUG, "Trying to get player stats...");
@@ -62,12 +68,16 @@ public class PlayerModel {
 				}
         	}        
         };
-        t.start();
+        this.t.start();			
 	}
 	
     private void getImageFromNetwork(final String playerModelUrl){
         final ImageFetcherController ifc = new ImageFetcherController();
-    	Thread t2 = new Thread(){
+        if(this.t2 != null){
+            this.t2.interrupt();
+        }
+
+        this.t2 = new Thread(){
         	public void run(){
 				try {
 					Log.d(DEBUG, "Trying to get Image...");
@@ -91,7 +101,7 @@ public class PlayerModel {
 				}
         	}        
         };
-        t2.start();      	
+        this.t2.start();
     }
 	
 	private Handler handler = new Handler(){

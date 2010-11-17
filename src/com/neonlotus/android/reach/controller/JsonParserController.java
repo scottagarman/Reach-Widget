@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -22,19 +23,23 @@ public class JsonParserController {
 	
 	public JSONObject parse(String url){
 		String feed = null;
+
+		URL mUrl;
 		try {
-			URL mUrl = new URL(url);
+			mUrl = new URL(url);			
 			Log.d(DEBUG_TAG, "URL:: " + mUrl );
 			URLConnection conn = mUrl.openConnection(); 
 			conn.connect(); 
 			InputStream is = conn.getInputStream(); 
 			feed = convertStreamToString(is);
 			is.close();
-			// ...send message to handler to populate view.
-		}catch (Exception e) {
-			Log.e(DEBUG_TAG, "Exception", e);
-		}finally {}
-		
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		// ...send message to handler to populate view.
 		return convertToJson(feed);
 	}
 	

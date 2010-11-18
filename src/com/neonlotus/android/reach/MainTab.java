@@ -1,5 +1,7 @@
 package com.neonlotus.android.reach;
 
+import java.text.NumberFormat;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,16 +24,20 @@ public class MainTab extends Activity implements OnClickListener, ChallengeDataL
 	
 	//Views
 	private TextView gamertag;
+	private TextView games;
+	private TextView armor;
+	private TextView daily;
+	private TextView weekly;
 	private ImageView avatar;
 	private ImageButton searchButton;
 	private EditText searchBox;
 	private Button friendButton;
 	
+	private NumberFormat percentFormatter;
+	
 	//Instance
 	PlayerModel mPlayer;
 	FriendsController fc;
-	
-	
 	
 	/** Called when the activity is first created. */
     @Override
@@ -41,6 +47,10 @@ public class MainTab extends Activity implements OnClickListener, ChallengeDataL
         
         //get views
         gamertag = (TextView) findViewById(R.id.gamertag);
+        games = (TextView) findViewById(R.id.gamesPlayed);
+        armor = (TextView) findViewById(R.id.armorComp);
+        daily = (TextView) findViewById(R.id.dailyChallenges);
+        weekly = (TextView) findViewById(R.id.weeklyChallenges);
         avatar = (ImageView) findViewById(R.id.avatar);
         searchButton = (ImageButton) findViewById(R.id.sendbutton);
         searchBox = (EditText) findViewById(R.id.gamertagsearch);
@@ -51,6 +61,7 @@ public class MainTab extends Activity implements OnClickListener, ChallengeDataL
         friendButton.setOnClickListener(this);
         
         //init
+        percentFormatter = NumberFormat.getPercentInstance();
         fc = new FriendsController(this);
         
         this.mPlayer = new PlayerModel(this);
@@ -83,8 +94,11 @@ public class MainTab extends Activity implements OnClickListener, ChallengeDataL
 	public void onDataRecieved() { 
 		Log.d(DEBUG_TAG, "onDataSuccess!!");
 		gamertag.setText(this.mPlayer.player.name);
+		games.setText(this.mPlayer.player.totalGames);
+		armor.setText( percentFormatter.format(this.mPlayer.player.armorCompletion)); //percent numberformater
+		daily.setText(this.mPlayer.player.dailyChallenges);
+		weekly.setText(this.mPlayer.player.weeklyChallenges);
 		friendButton.setVisibility(1);
 		avatar.setImageBitmap(this.mPlayer.image);
-    	
 	}
 }

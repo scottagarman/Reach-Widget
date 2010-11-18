@@ -139,7 +139,8 @@ public class PlayerModel {
 		public String serviceTag = "";
 		public String dailyChallenges = "";
 		public String weeklyChallenges = "";
-		public int totalGames = 0;
+		public String totalGames = "";
+		public double armorCompletion = 0;
 		
 		//General
 		public String playerModelUrl = "";
@@ -153,7 +154,8 @@ public class PlayerModel {
 			this.serviceTag 		= playerDetails.optString("service_tag");
 			this.dailyChallenges 	= playerDetails.optString("daily_challenges_completed");
 			this.weeklyChallenges 	= playerDetails.optString("weekly_challenges_completed");
-			this.totalGames 		= playerDetails.optInt("games_total");
+			this.totalGames 		= playerDetails.optString("games_total");
+			this.armorCompletion	= playerDetails.optDouble("armor_completion_percentage");
 			
 			//general details
 			this.playerModelUrl 	= jObject.optString("PlayerModelUrl");

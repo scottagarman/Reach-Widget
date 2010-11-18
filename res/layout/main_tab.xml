@@ -23,13 +23,13 @@
 		android:orientation="horizontal"
 		android:layout_height="wrap_content"
 		android:layout_width="fill_parent">
-	<!-- Gamer Tag -->
-	<TextView
-		android:id="@+id/gamertag"
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		android:layout_weight="8"
-		android:textSize="30dip" />
+		<!-- Gamer Tag -->
+		<TextView
+			android:id="@+id/gamertag"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:layout_weight="8"
+			android:textSize="30dip" />
 		<Button
 			android:id="@+id/friendbutton"
 			android:layout_width="wrap_content"
@@ -38,11 +38,84 @@
 			android:layout_weight="2"
 			android:text="Add Friend" />	
 	</LinearLayout>
-			
-	<!-- Avatar -->
-	<ImageView
-		android:id="@+id/avatar"
-		android:layout_gravity="center"
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content" />		
+	<RelativeLayout
+		android:layout_height="fill_parent"
+		android:layout_width="wrap_content"
+		android:paddingTop="15dip"	>
+		
+		<!-- Avatar -->
+		<LinearLayout
+			android:id="@+id/avatarLayout"
+			android:orientation="vertical"
+			android:layout_height="fill_parent"
+			android:layout_width="130dip">
+			<ImageView
+				android:id="@+id/avatar"
+				android:layout_gravity="center"
+				android:layout_height="fill_parent"
+				android:layout_width="fill_parent"
+				android:layout_marginTop="-80dip"
+				android:scaleType="fitCenter" />	
+		</LinearLayout>
+		
+		<LinearLayout
+			android:orientation="vertical"
+			android:layout_height="fill_parent"
+			android:layout_width="wrap_content"
+			android:layout_toRightOf="@id/avatarLayout">
+			<!-- #Games -->
+			<TextView
+				android:layout_height="wrap_content"
+				android:layout_width="fill_parent"
+				android:textSize="20dip" 
+				android:background="#475637"
+				android:text="Games Played"/>
+			<TextView
+				android:id="@+id/gamesPlayed"
+				android:layout_height="wrap_content"
+				android:layout_width="fill_parent"
+				android:textSize="20dip" 
+				android:text="--"/>
+			<!-- Armor% -->
+			<TextView
+				android:layout_height="wrap_content"
+				android:layout_width="fill_parent"
+				android:textSize="20dip" 
+				android:background="#475637"
+				android:text="Armor Completion"/>
+			<TextView
+				android:id="@+id/armorComp"
+				android:layout_height="wrap_content"
+				android:layout_width="fill_parent"
+				android:textSize="20dip" 
+				android:text="--"/>
+			<!-- Daily -->
+			<TextView
+				android:layout_height="wrap_content"
+				android:layout_width="fill_parent"
+				android:textSize="20dip" 
+				android:background="#475637"
+				android:text="Daily Challenges"/>
+			<TextView
+				android:id="@+id/dailyChallenges"
+				android:layout_height="wrap_content"
+				android:layout_width="fill_parent"
+				android:textSize="20dip" 
+				android:text="--"/>	
+			<!-- Weekly -->
+			<TextView
+				android:layout_height="wrap_content"
+				android:layout_width="fill_parent"
+				android:textSize="20dip" 
+				android:background="#475637"
+				android:text="Weekly Challenges"/>
+			<TextView
+				android:id="@+id/weeklyChallenges"
+				android:layout_height="wrap_content"
+				android:layout_width="fill_parent"
+				android:textSize="20dip" 
+				android:text="--"/>					
+		</LinearLayout>
+	
+	</RelativeLayout>	
 </LinearLayout>

@@ -11,7 +11,13 @@ import android.widget.TextView;
 
 import org.json.JSONObject;
 
-import com.neonlotus.android.reach.controller.JsonParserController;
+import com.neonlotus.android.reach.tabs.ChallengeTab;
+import com.neonlotus.android.reach.tabs.FriendTab;
+import com.neonlotus.android.reach.tabs.MainTab;
+import com.neonlotus.android.reach.tabs.SettingsTab;
+import com.neonlotus.android.reach.util.JsonParser;
+
+
 import android.util.Log;
 
 public class ReachMain extends TabActivity {

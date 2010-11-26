@@ -4,9 +4,10 @@ import java.net.URLEncoder;
 
 import org.json.JSONObject;
 
+
 import com.neonlotus.android.reach.REACHCONFIG;
-import com.neonlotus.android.reach.controller.ImageFetcherController;
-import com.neonlotus.android.reach.controller.JsonParserController;
+import com.neonlotus.android.reach.util.ImageFetcher;
+import com.neonlotus.android.reach.util.JsonParser;
 
 import android.graphics.Bitmap;
 import android.os.Handler;
@@ -40,7 +41,7 @@ public class PlayerModel {
 	
 	
 	private void getPlayerFromNetwork(){
-    	final JsonParserController jpc = new JsonParserController();
+    	final JsonParser jpc = new JsonParser();
     	if(this.t != null){
     		this.t.interrupt();
     	}
@@ -72,7 +73,7 @@ public class PlayerModel {
 	}
 	
     private void getImageFromNetwork(final String playerModelUrl){
-        final ImageFetcherController ifc = new ImageFetcherController();
+        final ImageFetcher ifc = new ImageFetcher();
         if(this.t2 != null){
             this.t2.interrupt();
         }

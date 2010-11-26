@@ -1,4 +1,7 @@
-package com.neonlotus.android.reach;
+package com.neonlotus.android.reach.tabs;
+
+import com.neonlotus.android.reach.R;
+import com.neonlotus.android.reach.R.layout;
 
 import android.app.Activity;
 import android.os.Bundle;

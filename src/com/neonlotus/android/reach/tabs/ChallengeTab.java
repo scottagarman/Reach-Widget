@@ -1,5 +1,8 @@
-package com.neonlotus.android.reach;
+package com.neonlotus.android.reach.tabs;
 
+import com.neonlotus.android.reach.R;
+import com.neonlotus.android.reach.R.id;
+import com.neonlotus.android.reach.R.layout;
 import com.neonlotus.android.reach.controller.ChallengeListAdapter;
 import com.neonlotus.android.reach.model.ChallengeDataListener;
 import com.neonlotus.android.reach.model.ChallengeModel;

@@ -7,12 +7,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
 import com.neonlotus.android.reach.REACHCONFIG;
-import com.neonlotus.android.reach.controller.JsonParserController;
+import com.neonlotus.android.reach.util.JsonParser;
 
 public class ChallengeModel {
 	private final static String DEBUG = "ReachWidget";
@@ -41,7 +42,7 @@ public class ChallengeModel {
 	
     private void getChallengesFromNetwork(){
     	Log.d(DEBUG, "Loading challenges from network.");
-    	final JsonParserController jpc = new JsonParserController();
+    	final JsonParser jpc = new JsonParser();
 		Thread t = new Thread(){
         	public void run(){
 				try {

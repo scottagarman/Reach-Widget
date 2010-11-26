@@ -1,4 +1,4 @@
-package com.neonlotus.android.reach.controller;
+package com.neonlotus.android.reach.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,11 +13,11 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
-public class JsonParserController {
+public class JsonParser {
 
 	private static final String DEBUG_TAG = "ReachWidget/JsonParserController";
 	
-	public JsonParserController(){
+	public JsonParser(){
 		
 	}
 	

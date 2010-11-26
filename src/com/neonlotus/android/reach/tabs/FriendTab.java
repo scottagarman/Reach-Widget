@@ -1,4 +1,4 @@
-package com.neonlotus.android.reach;
+package com.neonlotus.android.reach.tabs;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,10 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 
-import com.neonlotus.android.reach.controller.FriendsController;
+import com.neonlotus.android.reach.R;
+import com.neonlotus.android.reach.R.id;
+import com.neonlotus.android.reach.R.layout;
+import com.neonlotus.android.reach.util.FriendsManager;
 
 
 public class FriendTab extends Activity implements OnItemClickListener, OnItemLongClickListener {
@@ -27,7 +30,7 @@ public class FriendTab extends Activity implements OnItemClickListener, OnItemLo
 	
 	//Instance
 	private ArrayList<String> friendsList;
-	private FriendsController fc;
+	private FriendsManager fc;
 	
 	/** Called when the activity is first created. */
     @Override
@@ -41,7 +44,7 @@ public class FriendTab extends Activity implements OnItemClickListener, OnItemLo
         friendsListView.setOnItemLongClickListener(this);
         
         //instance
-    	fc = new FriendsController(this);
+    	fc = new FriendsManager(this);
     	
         //load list
         init();

@@ -21,10 +21,10 @@
 		</intent-filter>
 	</activity>
 	
-	<activity android:name=".ChallengeTab"></activity>
-    <activity android:name=".FriendTab"></activity>
-    <activity android:name=".SettingsTab"></activity>
-    <activity android:name=".MainTab"></activity>
+	<activity android:name=".tabs.ChallengeTab"></activity>
+    <activity android:name=".tabs.FriendTab"></activity>
+    <activity android:name=".tabs.SettingsTab"></activity>
+    <activity android:name=".tabs.MainTab"></activity>
     <activity android:name=".widget.WidgetConfigure">
 	    <intent-filter>
 	        <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />

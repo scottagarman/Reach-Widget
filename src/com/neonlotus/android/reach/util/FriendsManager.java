@@ -1,4 +1,4 @@
-package com.neonlotus.android.reach.controller;
+package com.neonlotus.android.reach.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,11 +9,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
-public class FriendsController {
+public class FriendsManager {
 	
 	private Context ctx;
 	
-	public FriendsController(Context ctx){
+	public FriendsManager(Context ctx){
 		this.ctx = ctx;
 	}
 	

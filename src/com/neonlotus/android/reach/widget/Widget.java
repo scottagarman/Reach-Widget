@@ -2,7 +2,7 @@ package com.neonlotus.android.reach.widget;
 
 
 import com.neonlotus.android.reach.REACHCONFIG;
-import com.neonlotus.android.reach.controller.ImageFetcherController;
+import com.neonlotus.android.reach.util.ImageFetcher;
 
 import android.app.Service;
 import android.appwidget.AppWidgetManager;
@@ -80,14 +80,14 @@ public class Widget	extends AppWidgetProvider {
 	    	private int appWidgetId;
 	    	private String tag;
 	    	private Bitmap image;
-	    	private ImageFetcherController ifc;
+	    	private ImageFetcher ifc;
 	    	
 	    	public UpdateThread(Context context, int appWidgetId, String tag){
 	    		this.ctx = context;
 	    		this.appWidgetId = appWidgetId;
 	    		this.tag = tag;
 	    		
-	    		this.ifc = new ImageFetcherController();
+	    		this.ifc = new ImageFetcher();
 	    		this.image = null;
 	    	}
 	    	public void run(){

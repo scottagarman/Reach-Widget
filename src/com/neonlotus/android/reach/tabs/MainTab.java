@@ -1,4 +1,4 @@
-package com.neonlotus.android.reach;
+package com.neonlotus.android.reach.tabs;
 
 import java.text.NumberFormat;
 
@@ -14,9 +14,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.neonlotus.android.reach.controller.FriendsController;
+import com.neonlotus.android.reach.R;
+import com.neonlotus.android.reach.R.id;
+import com.neonlotus.android.reach.R.layout;
 import com.neonlotus.android.reach.model.ChallengeDataListener;
 import com.neonlotus.android.reach.model.PlayerModel;
+import com.neonlotus.android.reach.util.FriendsManager;
 
 
 public class MainTab extends Activity implements OnClickListener, ChallengeDataListener {
@@ -37,7 +40,7 @@ public class MainTab extends Activity implements OnClickListener, ChallengeDataL
 	
 	//Instance
 	PlayerModel mPlayer;
-	FriendsController fc;
+	FriendsManager fc;
 	
 	/** Called when the activity is first created. */
     @Override
@@ -62,7 +65,7 @@ public class MainTab extends Activity implements OnClickListener, ChallengeDataL
         
         //init
         percentFormatter = NumberFormat.getPercentInstance();
-        fc = new FriendsController(this);
+        fc = new FriendsManager(this);
         
         this.mPlayer = new PlayerModel(this);
     }

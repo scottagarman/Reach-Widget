@@ -1,4 +1,4 @@
-package com.neonlotus.android.reach.controller;
+package com.neonlotus.android.reach.util;
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;
@@ -9,10 +9,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
-public class ImageFetcherController {
+public class ImageFetcher {
 	private static final String URL_PREFIX = "http://www.bungie.net";
 	
-	public ImageFetcherController(){
+	public ImageFetcher(){
 		
 	}
 	public Bitmap getImageFromUrl(String url){

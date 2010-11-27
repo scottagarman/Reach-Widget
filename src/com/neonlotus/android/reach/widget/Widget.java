@@ -33,12 +33,12 @@ public class Widget	extends AppWidgetProvider {
 	
 	public void onDeleted(Context context, int[] appWidgetIds) {
 		super.onDeleted(context, appWidgetIds);
+		Log.d(DEBUG, "WIDGET: onDelete()");
 		SharedPreferences sp = context.getSharedPreferences(REACHCONFIG.Preferences.ALL, Context.MODE_PRIVATE);
 		Editor editor = sp.edit();
-		String tag;
 		
 		for(int appWidgetId : appWidgetIds){
-			tag = sp.getString(REACHCONFIG.Preferences.TAG_KEY + appWidgetId, null);
+			Log.d(DEBUG, "Deleteing: " + appWidgetId);
 			editor.remove(REACHCONFIG.Preferences.TAG_KEY + appWidgetId);
 		}
 		editor.commit();
@@ -52,7 +52,7 @@ public class Widget	extends AppWidgetProvider {
 	 */
     public static class UpdateService extends Service {
         public void onStart(Intent intent, int startId) {
-            Log.d(DEBUG, "WIDGET: onStart()");
+            Log.d(DEBUG, "WIDGET: onStartService()");
             
 			// Get widget IDs passed from 'intent'
 			int[] appWidgetIds = intent.getIntArrayExtra(REACHCONFIG.Intents.EXTRA_IDS);
@@ -64,6 +64,7 @@ public class Widget	extends AppWidgetProvider {
 			for(int appWidgetId : appWidgetIds){
 				tempTag = sp.getString(REACHCONFIG.Preferences.TAG_KEY + appWidgetId, null);
 				if(tempTag != null){
+					Log.d(DEBUG, "READING ID: " + appWidgetId + " Tag: " + tempTag);
 					new UpdateThread(this, appWidgetId, tempTag).start();
 				}
 			}			
@@ -91,6 +92,7 @@ public class Widget	extends AppWidgetProvider {
 	    		this.image = null;
 	    	}
 	    	public void run(){
+	    		Log.d(DEBUG, "RunUpdate Service for: " + tag);
 	    		this.image = this.ifc.getImageFromUrl(tag);
 	    		if(this.image != null){
 	    			//build view

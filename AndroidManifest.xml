@@ -38,6 +38,7 @@
 			</intent-filter>
 		</activity>
 -->
+	<service android:name=".widget.Widget$UpdateService"></service>
     </application>
 
     <!-- Permissions -->

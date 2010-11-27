@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -21,12 +22,15 @@ import android.widget.RemoteViews;
 import android.widget.Toast;
 
 public class WidgetConfigure extends Activity implements OnClickListener, ChallengeDataListener{
+	private static final String DEBUG = "ReachWidget";
+	
 	private EditText editText;
 	private Button button;
 	private PlayerModel player;
 	
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setResult(RESULT_CANCELED);
         setContentView(R.layout.configure_layout_stub);
         
         editText = (EditText) findViewById(R.id.configureEditText);
@@ -54,6 +58,7 @@ public class WidgetConfigure extends Activity implements OnClickListener, Challe
 		SharedPreferences sp = getSharedPreferences(REACHCONFIG.Preferences.ALL, MODE_PRIVATE);
 		Editor editor = sp.edit();
 		editor.putString(REACHCONFIG.Preferences.TAG_KEY+appWidgetId, url);
+		Log.d(DEBUG, "STORING ID: " + appWidgetId + " Tag: " + url);
 		editor.commit();
 		
 		//tempTag = sp.getString(REACHCONFIG.Preferences.TAG_KEY + appWidgetId, null);

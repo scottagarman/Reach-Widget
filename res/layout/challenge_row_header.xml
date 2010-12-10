@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="35dip"
+  android:orientation="horizontal"
+  android:background="#C38D31"
+  >
+  <TextView
+	android:id="@+id/challengeHeaderTitle"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:textSize="24dip"
+	/>
+</RelativeLayout>

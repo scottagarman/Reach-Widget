@@ -26,6 +26,30 @@ public class ChallengeListAdapter extends BaseAdapter {
 		
 	}
 	public View getView(int position, View convertView, ViewGroup parent) {
+		if(this.challengeList.isHeaderAtIndex(position)){
+			return getHeaderView(position, convertView, parent);
+		}else{
+			return getRowView(position, convertView, parent);
+		}
+	}
+	//header
+	public View getHeaderView(int position, View convertView, ViewGroup parent){
+		ViewHolder holder;
+		if(convertView == null){
+			convertView = this.inflator.inflate(R.layout.challenge_row_header, parent, false);
+			holder = new ViewHolder();
+			holder.name = (TextView) convertView.findViewById(R.id.challengeHeaderTitle);	
+			convertView.setTag(holder);
+		}else{
+			holder = (ViewHolder) convertView.getTag();
+		}
+		
+		holder.name.setText( (CharSequence) this.challengeList.getChallengeAtIndex(position).get("name"));
+		
+		return convertView;
+	}
+	//row
+	public View getRowView(int position, View convertView, ViewGroup parent){
 		ViewHolder holder;
 		if(convertView == null){
 			convertView = this.inflator.inflate(R.layout.challenge_row, parent, false);
@@ -46,6 +70,7 @@ public class ChallengeListAdapter extends BaseAdapter {
 		holder.typeImage.setImageBitmap((Boolean) this.challengeList.getChallengeAtIndex(position).get("isWeeklyChallenge") ? null : null); //put image types here
 		
 		return convertView;
+		
 	}
 	
 	static class ViewHolder { 

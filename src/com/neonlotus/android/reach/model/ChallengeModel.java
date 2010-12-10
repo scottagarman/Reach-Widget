@@ -31,7 +31,15 @@ public class ChallengeModel {
 		this.challenges = new ArrayList<HashMap>();
 		this.getChallengesFromNetwork();
 	}
-
+	
+	public boolean isHeaderAtIndex(int index){
+		if((Boolean)this.challenges.get(index).get("isHeader")){
+			return true;
+		}else{
+			return false;
+		}
+		
+	}
 	public HashMap getChallengeAtIndex(int index){
 		return this.challenges.get(index);
 	}
@@ -74,7 +82,14 @@ public class ChallengeModel {
     	JSONObject ch;
     	JSONArray daily = jObject.optJSONArray("Daily");
     	JSONArray weekly = jObject.optJSONArray("Weekly");
-		for (int i=0; i < daily.length(); i++) {
+		
+    	//add Daily header
+    	hm = new HashMap();
+    	hm.put("name", "Daily");
+    	hm.put("isHeader", true);
+    	this.challenges.add(hm);		
+		
+    	for (int i=0; i < daily.length(); i++) {
 	    	hm = new HashMap();
 	    	try {
 				ch = daily.getJSONObject(i);
@@ -83,12 +98,20 @@ public class ChallengeModel {
 		    	hm.put("description", ch.optString("Description"));
 		    	hm.put("expDate", ch.optString("ExpirationDate"));
 		    	hm.put("isWeeklyChallenge", (Boolean) ch.optBoolean("IsWeeklyChallenge"));
+		    	hm.put("isHeader", false);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
 	    	
 	    	this.challenges.add(hm);
 		}
+    	
+    	//add Weekly header
+    	hm = new HashMap();
+    	hm.put("name", "Weekly");
+    	hm.put("isHeader", true);
+    	this.challenges.add(hm);
+    	
 		for (int i=0; i < weekly.length(); i++) {
 	    	hm = new HashMap();
 	    	try {
@@ -98,6 +121,7 @@ public class ChallengeModel {
 		    	hm.put("description", ch.optString("Description"));
 		    	hm.put("expDate", ch.optString("ExpirationDate"));
 		    	hm.put("isWeeklyChallenge", (Boolean) ch.optBoolean("IsWeeklyChallenge"));
+		    	hm.put("isHeader", false);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}

@@ -96,6 +96,7 @@ public class Widget	extends AppWidgetProvider {
 	    		this.image = this.ifc.getImageFromUrl(tag);
 	    		if(this.image != null){
 	    			//build view
+	    			Log.d(DEBUG, "Image is not null, building view");
 	        		RemoteViews updateViews = REACHCONFIG.Widget.buildRemoteView(this.ctx, this.appWidgetId, this.image);
 					AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this.ctx);
 					appWidgetManager.updateAppWidget(appWidgetId, updateViews);

@@ -90,6 +90,6 @@ public class WidgetConfigure extends Activity implements OnClickListener, Challe
 	}
 
 	public void onDataRecieved() {
-		this.updateWidget(this, this.player.player.name, this.player.image);
+		this.updateWidget(this, this.player.player.playerModelUrl, this.player.image);
 	}
 }

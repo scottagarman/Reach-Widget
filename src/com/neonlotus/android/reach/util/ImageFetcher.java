@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.util.Log;
 
 public class ImageFetcher {
+	private final static String DEBUG = "ReachWidget";
 	private static final String URL_PREFIX = "http://www.bungie.net";
 	
 	public ImageFetcher(){
@@ -19,7 +20,7 @@ public class ImageFetcher {
     	Bitmap bm = null;
 		try {
             /* Open a new URL and get the InputStream to load data from it. */ 
-			Log.d("ImageFetcher", "getting img: " + URL_PREFIX+url);
+			Log.d(DEBUG, "getting img: " + URL_PREFIX+url);
             URL aURL = new URL(URL_PREFIX + url);
             URLConnection conn = aURL.openConnection(); 
             conn.connect(); 
@@ -31,6 +32,7 @@ public class ImageFetcher {
             bis.close(); 
             is.close(); 
     	} catch (Exception e) {
+    		Log.d(DEBUG, "Failed to download Image");
     		bm = null;
     	}
     	return bm;

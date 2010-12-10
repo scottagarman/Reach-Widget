@@ -79,7 +79,14 @@ public class ChallengeListAdapter extends BaseAdapter {
 		TextView credits;
 		ImageView typeImage;
 	}
-
+	public boolean areAllItemsSelectable() {  
+		return false;  
+	}  
+	  
+	public boolean isEnabled(int position) {  
+		return (!this.challengeList.isHeaderAtIndex(position));  
+	} 
+	
 	public int getCount() {
 		return this.challengeList.size();
 	}

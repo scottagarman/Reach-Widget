@@ -80,9 +80,10 @@ public class FriendTab extends Activity implements OnItemClickListener, OnItemLo
 		//add confirm dialog box to this
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setCancelable(true);
-		builder.setTitle("Delete Friend?");
-		builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+		builder.setCancelable(true)
+		.setTitle("Confirm Delete Friend")
+		.setMessage("Do you really want to delete " + fc.loadAll().get(pos) + "?")
+		.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 			//@Override
 			public void onClick(DialogInterface dialog, int which) {
 				fc.removeByIndex(pos);
@@ -90,8 +91,8 @@ public class FriendTab extends Activity implements OnItemClickListener, OnItemLo
 				
 				dialog.dismiss();
 			}
-		});
-		builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+		})
+		.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 			//@Override
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
